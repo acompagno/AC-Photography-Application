@@ -8,15 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "MWPhotoBrowser.h"
 
 AppDelegate *ThirdAppDel;
 
 
-@interface ThumbNailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface ThumbNailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MWPhotoBrowserDelegate>
 {
     UICollectionView *_collectionView;
+    MWPhotoBrowser *photoGallery;
 }
-@property (nonatomic, retain) IBOutlet UIImageView *imageview;
-
+@property (nonatomic, retain) IBOutlet  NSMutableArray *photos;
 
 @end

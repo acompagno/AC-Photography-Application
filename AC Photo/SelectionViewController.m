@@ -8,8 +8,9 @@
 
 #import "SelectionViewController.h"
 #import "ThumbNailViewController.h"
-#import "UIImageView+WebCache.h"
 #import "CustomTableCell.h"
+#import "UIImageView+WebCache.h"
+
 #define jsonDataURL [NSURL URLWithString:@"http://www.weebly.com/uploads/6/5/5/1/6551078/acphoto.json"]
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
@@ -103,6 +104,15 @@ NSMutableDictionary *TableViewImages;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 90.0f;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [[[UIAlertView alloc]
+       initWithTitle:@"Title"
+       message:@"Message"
+       delegate:self
+       cancelButtonTitle:@"Ok"
+       otherButtonTitles: nil] show];
 }
 
 @end

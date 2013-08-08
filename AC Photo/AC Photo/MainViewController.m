@@ -9,7 +9,9 @@
 #import "MainViewController.h"
 #import "SelectionViewController.h"
 #import "UIImageView+WebCache.h"
+//#import <SDWebImage/UIImageView+WebCache.h>
 #import "Utils.h"
+
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 #define jsonDataURL [NSURL URLWithString:@"http://www.weebly.com/uploads/6/5/5/1/6551078/acphoto.json"]
 
@@ -76,6 +78,7 @@ NSDictionary* json_data;
     {
         UIImageView *image = [[UIImageView alloc] initWithFrame:CGRectMake(x+0, 0, self.view.frame.size.width, self.scrollViewFeatured.frame.size.height)];
         [image setImageWithURL:[NSURL URLWithString:featured[i-1]]];
+        
         [self.scrollViewFeatured addSubview:image];
         x+=320;
     }

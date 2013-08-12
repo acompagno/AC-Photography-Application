@@ -21,8 +21,7 @@
 
 - (void)setupImageView {
     self.imageView = [[UIImageView alloc] initWithFrame:self.bounds];
-    self.imageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    // Configure the image view here
+    self.imageView.autoresizingMask = UIViewAutoresizingNone;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self addSubview:self.imageView];
 }
 

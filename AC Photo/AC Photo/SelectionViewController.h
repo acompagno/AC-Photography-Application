@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
+#import "Reachability.h"
 
-AppDelegate *SecondaryAppDel;
+AppDelegate *secondaryAppDel;
 
 @interface SelectionViewController : UIViewController<UINavigationBarDelegate,UITableViewDelegate,UITableViewDataSource>
-
-@property (nonatomic, retain) IBOutlet UITableView *TableView2;
-
+{
+    Reachability *internetReachableSel;
+    UITableView *tableView2;
+    UIView *internetAlertSelBackground;
+}
+@property (nonatomic , retain) UITableView *tableView2;
+@property (nonatomic , retain) UIView *internetAlertSelBackground;
 @end
 

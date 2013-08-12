@@ -17,7 +17,6 @@
 		300B038917AE6680007FF7EE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 300B038817AE6680007FF7EE /* Default@2x.png */; };
 		300B038B17AE6680007FF7EE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 300B038A17AE6680007FF7EE /* Default-568h@2x.png */; };
 		300B039C17AE66D0007FF7EE /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 300B039B17AE66D0007FF7EE /* MainViewController.m */; };
-		300B03A017AE670E007FF7EE /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 300B039F17AE670E007FF7EE /* SelectionViewController.m */; };
 		300B03A317AE675A007FF7EE /* ThumbNailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 300B03A217AE675A007FF7EE /* ThumbNailViewController.m */; };
 		300B03A617AE679C007FF7EE /* CustomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 300B03A517AE679C007FF7EE /* CustomCollectionCell.m */; };
 		300B03D317AE67EB007FF7EE /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 300B03D217AE67EB007FF7EE /* MapKit.framework */; };
@@ -41,6 +40,12 @@
 		30458BEA17B35200005CDBAA /* SDWebImagePrefetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 30458BD717B35200005CDBAA /* SDWebImagePrefetcher.m */; };
 		30458BEB17B35200005CDBAA /* UIButton+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 30458BD917B35200005CDBAA /* UIButton+WebCache.m */; };
 		30458BEC17B35200005CDBAA /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 30458BDB17B35200005CDBAA /* UIImageView+WebCache.m */; };
+		30458BEF17B3D11D005CDBAA /* CellBackgroundMainClick.png in Resources */ = {isa = PBXBuildFile; fileRef = 30458BEE17B3D11D005CDBAA /* CellBackgroundMainClick.png */; };
+		30458BF217B3E441005CDBAA /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 30458BF117B3E440005CDBAA /* Reachability.m */; };
+		30458BF517B3E465005CDBAA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30458BF417B3E465005CDBAA /* SystemConfiguration.framework */; };
+		305A0FB217B8C59900F5CC8D /* FBLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 305A0FB117B8C59900F5CC8D /* FBLogo.png */; };
+		305A0FB417B8DD3E00F5CC8D /* WebsiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 305A0FB317B8DD3E00F5CC8D /* WebsiteButton.png */; };
+		305A0FB717B9089400F5CC8D /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305A0FB617B9089400F5CC8D /* SelectionViewController.m */; };
 		30AED4D917B1DC29004AC567 /* CellBackgroundMain.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AED4D517B1DC29004AC567 /* CellBackgroundMain.png */; };
 		30AED4DA17B1DC29004AC567 /* CellBackgroundSel.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AED4D617B1DC29004AC567 /* CellBackgroundSel.png */; };
 		30AED4DB17B1DC29004AC567 /* CellBackgroundSelClick.png in Resources */ = {isa = PBXBuildFile; fileRef = 30AED4D717B1DC29004AC567 /* CellBackgroundSelClick.png */; };
@@ -48,7 +53,10 @@
 		30AED51E17B230D1004AC567 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AED51D17B230D1004AC567 /* QuartzCore.framework */; };
 		30AED52017B23115004AC567 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30AED51F17B23115004AC567 /* MessageUI.framework */; };
 		30C9A1BE17B2DFC500FD34A6 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C9A1AC17B2DFC500FD34A6 /* MWPhotoBrowser.bundle */; };
-		30C9A23B17B342FD00FD34A6 /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C9A23A17B342FD00FD34A6 /* UIImage+Resize.m */; };
+		30EAC7BE17B71F81009496F1 /* FTAnimation+UIView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EAC7BA17B71F81009496F1 /* FTAnimation+UIView.m */; };
+		30EAC7BF17B71F81009496F1 /* FTAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EAC7BB17B71F81009496F1 /* FTAnimationManager.m */; };
+		30EAC7C017B71F81009496F1 /* FTUtils+NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EAC7BC17B71F81009496F1 /* FTUtils+NSObject.m */; };
+		30EAC7C117B71F81009496F1 /* FTUtils+UIGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 30EAC7BD17B71F81009496F1 /* FTUtils+UIGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,8 +75,6 @@
 		300B038A17AE6680007FF7EE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		300B039A17AE66D0007FF7EE /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		300B039B17AE66D0007FF7EE /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		300B039E17AE670E007FF7EE /* SelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SelectionViewController.h; path = ../SelectionViewController.h; sourceTree = "<group>"; };
-		300B039F17AE670E007FF7EE /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SelectionViewController.m; path = ../SelectionViewController.m; sourceTree = "<group>"; };
 		300B03A117AE675A007FF7EE /* ThumbNailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThumbNailViewController.h; sourceTree = "<group>"; };
 		300B03A217AE675A007FF7EE /* ThumbNailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThumbNailViewController.m; sourceTree = "<group>"; };
 		300B03A417AE679C007FF7EE /* CustomCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionCell.h; sourceTree = "<group>"; };
@@ -115,6 +121,14 @@
 		30458BD917B35200005CDBAA /* UIButton+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+WebCache.m"; sourceTree = "<group>"; };
 		30458BDA17B35200005CDBAA /* UIImageView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+WebCache.h"; sourceTree = "<group>"; };
 		30458BDB17B35200005CDBAA /* UIImageView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+WebCache.m"; sourceTree = "<group>"; };
+		30458BEE17B3D11D005CDBAA /* CellBackgroundMainClick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBackgroundMainClick.png; sourceTree = "<group>"; };
+		30458BF017B3E440005CDBAA /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../Reachability/Reachability.h; sourceTree = "<group>"; };
+		30458BF117B3E440005CDBAA /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../Reachability/Reachability.m; sourceTree = "<group>"; };
+		30458BF417B3E465005CDBAA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		305A0FB117B8C59900F5CC8D /* FBLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBLogo.png; sourceTree = "<group>"; };
+		305A0FB317B8DD3E00F5CC8D /* WebsiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WebsiteButton.png; sourceTree = "<group>"; };
+		305A0FB517B9089400F5CC8D /* SelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionViewController.h; sourceTree = "<group>"; };
+		305A0FB617B9089400F5CC8D /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionViewController.m; sourceTree = "<group>"; };
 		30AED4D517B1DC29004AC567 /* CellBackgroundMain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBackgroundMain.png; sourceTree = "<group>"; };
 		30AED4D617B1DC29004AC567 /* CellBackgroundSel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBackgroundSel.png; sourceTree = "<group>"; };
 		30AED4D717B1DC29004AC567 /* CellBackgroundSelClick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBackgroundSelClick.png; sourceTree = "<group>"; };
@@ -122,8 +136,16 @@
 		30AED51D17B230D1004AC567 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		30AED51F17B23115004AC567 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		30C9A1AC17B2DFC500FD34A6 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MWPhotoBrowser.bundle; path = ../../MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle; sourceTree = "<group>"; };
-		30C9A23917B342FD00FD34A6 /* UIImage+Resize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+Resize.h"; path = "../../../UIImage-categories/UIImage+Resize.h"; sourceTree = "<group>"; };
-		30C9A23A17B342FD00FD34A6 /* UIImage+Resize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+Resize.m"; path = "../../../UIImage-categories/UIImage+Resize.m"; sourceTree = "<group>"; };
+		30EAC7BA17B71F81009496F1 /* FTAnimation+UIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FTAnimation+UIView.m"; path = "../../Classes/FTAnimation+UIView.m"; sourceTree = "<group>"; };
+		30EAC7BB17B71F81009496F1 /* FTAnimationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FTAnimationManager.m; path = ../../Classes/FTAnimationManager.m; sourceTree = "<group>"; };
+		30EAC7BC17B71F81009496F1 /* FTUtils+NSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FTUtils+NSObject.m"; path = "../../Classes/FTUtils+NSObject.m"; sourceTree = "<group>"; };
+		30EAC7BD17B71F81009496F1 /* FTUtils+UIGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "FTUtils+UIGestureRecognizer.m"; path = "../../Classes/FTUtils+UIGestureRecognizer.m"; sourceTree = "<group>"; };
+		30EAC7C317B71F9C009496F1 /* FTAnimation+UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTAnimation+UIView.h"; sourceTree = "<group>"; };
+		30EAC7C417B71F9C009496F1 /* FTAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTAnimation.h; sourceTree = "<group>"; };
+		30EAC7C517B71F9C009496F1 /* FTAnimationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTAnimationManager.h; sourceTree = "<group>"; };
+		30EAC7C617B71F9C009496F1 /* FTUtils+NSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTUtils+NSObject.h"; sourceTree = "<group>"; };
+		30EAC7C717B71F9C009496F1 /* FTUtils+UIGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTUtils+UIGestureRecognizer.h"; sourceTree = "<group>"; };
+		30EAC7C817B71F9C009496F1 /* FTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTUtils.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +153,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30458BF517B3E465005CDBAA /* SystemConfiguration.framework in Frameworks */,
 				30AED52017B23115004AC567 /* MessageUI.framework in Frameworks */,
 				30AED51E17B230D1004AC567 /* QuartzCore.framework in Frameworks */,
 				300B03D517AE67F0007FF7EE /* ImageIO.framework in Frameworks */,
@@ -164,6 +187,7 @@
 		300B037317AE6680007FF7EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				30458BF417B3E465005CDBAA /* SystemConfiguration.framework */,
 				30C9A1AC17B2DFC500FD34A6 /* MWPhotoBrowser.bundle */,
 				30AED51F17B23115004AC567 /* MessageUI.framework */,
 				30AED51D17B230D1004AC567 /* QuartzCore.framework */,
@@ -186,8 +210,6 @@
 				30AED4DE17B1DC41004AC567 /* Custom Subclasses */,
 				300B038317AE6680007FF7EE /* AppDelegate.h */,
 				300B038417AE6680007FF7EE /* AppDelegate.m */,
-				30229F9317B0B2A500D62060 /* Utils.h */,
-				30229F9417B0B2A500D62060 /* Utils.m */,
 			);
 			path = "AC Photo";
 			sourceTree = "<group>";
@@ -195,13 +217,12 @@
 		300B037B17AE6680007FF7EE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				30229F9317B0B2A500D62060 /* Utils.h */,
+				30229F9417B0B2A500D62060 /* Utils.m */,
 				300B037C17AE6680007FF7EE /* AC Photo-Info.plist */,
 				300B037D17AE6680007FF7EE /* InfoPlist.strings */,
 				300B038017AE6680007FF7EE /* main.m */,
 				300B038217AE6680007FF7EE /* AC Photo-Prefix.pch */,
-				300B038617AE6680007FF7EE /* Default.png */,
-				300B038817AE6680007FF7EE /* Default@2x.png */,
-				300B038A17AE6680007FF7EE /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -211,8 +232,8 @@
 			children = (
 				300B039A17AE66D0007FF7EE /* MainViewController.h */,
 				300B039B17AE66D0007FF7EE /* MainViewController.m */,
-				300B039E17AE670E007FF7EE /* SelectionViewController.h */,
-				300B039F17AE670E007FF7EE /* SelectionViewController.m */,
+				305A0FB517B9089400F5CC8D /* SelectionViewController.h */,
+				305A0FB617B9089400F5CC8D /* SelectionViewController.m */,
 				300B03A117AE675A007FF7EE /* ThumbNailViewController.h */,
 				300B03A217AE675A007FF7EE /* ThumbNailViewController.m */,
 			);
@@ -222,8 +243,9 @@
 		300B03D117AE67D5007FF7EE /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				30EAC7C217B71F9C009496F1 /* FTUtils */,
+				30458BF317B3E448005CDBAA /* Reachability */,
 				30458BB417B35200005CDBAA /* MWPhotobrowser */,
-				30C9A19217B2DFC500FD34A6 /* Resize */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -290,9 +312,24 @@
 			path = ../Libraries/SDWebImage;
 			sourceTree = "<group>";
 		};
+		30458BF317B3E448005CDBAA /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				30458BF017B3E440005CDBAA /* Reachability.h */,
+				30458BF117B3E440005CDBAA /* Reachability.m */,
+			);
+			name = Reachability;
+			sourceTree = "<group>";
+		};
 		30AED4DD17B1DC2D004AC567 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				305A0FB317B8DD3E00F5CC8D /* WebsiteButton.png */,
+				305A0FB117B8C59900F5CC8D /* FBLogo.png */,
+				30458BEE17B3D11D005CDBAA /* CellBackgroundMainClick.png */,
+				300B038617AE6680007FF7EE /* Default.png */,
+				300B038817AE6680007FF7EE /* Default@2x.png */,
+				300B038A17AE6680007FF7EE /* Default-568h@2x.png */,
 				30AED4D517B1DC29004AC567 /* CellBackgroundMain.png */,
 				30AED4D617B1DC29004AC567 /* CellBackgroundSel.png */,
 				30AED4D717B1DC29004AC567 /* CellBackgroundSelClick.png */,
@@ -312,14 +349,22 @@
 			name = "Custom Subclasses";
 			sourceTree = "<group>";
 		};
-		30C9A19217B2DFC500FD34A6 /* Resize */ = {
+		30EAC7C217B71F9C009496F1 /* FTUtils */ = {
 			isa = PBXGroup;
 			children = (
-				30C9A23917B342FD00FD34A6 /* UIImage+Resize.h */,
-				30C9A23A17B342FD00FD34A6 /* UIImage+Resize.m */,
+				30EAC7BA17B71F81009496F1 /* FTAnimation+UIView.m */,
+				30EAC7BB17B71F81009496F1 /* FTAnimationManager.m */,
+				30EAC7BC17B71F81009496F1 /* FTUtils+NSObject.m */,
+				30EAC7BD17B71F81009496F1 /* FTUtils+UIGestureRecognizer.m */,
+				30EAC7C317B71F9C009496F1 /* FTAnimation+UIView.h */,
+				30EAC7C417B71F9C009496F1 /* FTAnimation.h */,
+				30EAC7C517B71F9C009496F1 /* FTAnimationManager.h */,
+				30EAC7C617B71F9C009496F1 /* FTUtils+NSObject.h */,
+				30EAC7C717B71F9C009496F1 /* FTUtils+UIGestureRecognizer.h */,
+				30EAC7C817B71F9C009496F1 /* FTUtils.h */,
 			);
-			name = Resize;
-			path = ../../../MWPhotoBrowser/MWPhotoBrowser/Libraries;
+			name = FTUtils;
+			path = ../../../ftutils/Headers/FTUtils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,6 +430,9 @@
 				30458BE317B35200005CDBAA /* README.mdown in Resources */,
 				30458BE417B35200005CDBAA /* LICENSE in Resources */,
 				30458BE517B35200005CDBAA /* README.md in Resources */,
+				30458BEF17B3D11D005CDBAA /* CellBackgroundMainClick.png in Resources */,
+				305A0FB217B8C59900F5CC8D /* FBLogo.png in Resources */,
+				305A0FB417B8DD3E00F5CC8D /* WebsiteButton.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,12 +446,10 @@
 				300B038117AE6680007FF7EE /* main.m in Sources */,
 				300B038517AE6680007FF7EE /* AppDelegate.m in Sources */,
 				300B039C17AE66D0007FF7EE /* MainViewController.m in Sources */,
-				300B03A017AE670E007FF7EE /* SelectionViewController.m in Sources */,
 				300B03A317AE675A007FF7EE /* ThumbNailViewController.m in Sources */,
 				300B03A617AE679C007FF7EE /* CustomCollectionCell.m in Sources */,
 				30229F9217B0A95F00D62060 /* CustomTableCell.m in Sources */,
 				30229F9517B0B2A500D62060 /* Utils.m in Sources */,
-				30C9A23B17B342FD00FD34A6 /* UIImage+Resize.m in Sources */,
 				30458BDC17B35200005CDBAA /* MWCaptionView.m in Sources */,
 				30458BDD17B35200005CDBAA /* MWPhoto.m in Sources */,
 				30458BDE17B35200005CDBAA /* MWPhotoBrowser.m in Sources */,
@@ -418,6 +464,12 @@
 				30458BEA17B35200005CDBAA /* SDWebImagePrefetcher.m in Sources */,
 				30458BEB17B35200005CDBAA /* UIButton+WebCache.m in Sources */,
 				30458BEC17B35200005CDBAA /* UIImageView+WebCache.m in Sources */,
+				30458BF217B3E441005CDBAA /* Reachability.m in Sources */,
+				30EAC7BE17B71F81009496F1 /* FTAnimation+UIView.m in Sources */,
+				30EAC7BF17B71F81009496F1 /* FTAnimationManager.m in Sources */,
+				30EAC7C017B71F81009496F1 /* FTUtils+NSObject.m in Sources */,
+				30EAC7C117B71F81009496F1 /* FTUtils+UIGestureRecognizer.m in Sources */,
+				305A0FB717B9089400F5CC8D /* SelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

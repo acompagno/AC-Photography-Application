@@ -10,8 +10,10 @@
 #import "MainViewController.h"
 
 @implementation AppDelegate
-@synthesize RootTableSelection;
-@synthesize SecondTableSelection;
+@synthesize rootTableSelection;
+@synthesize secondTableSelection;
+@synthesize data;
+@synthesize jsonData;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

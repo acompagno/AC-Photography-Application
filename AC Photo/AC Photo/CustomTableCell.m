@@ -14,7 +14,6 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        // Initialization code
     }
     return self;
 }
@@ -22,14 +21,12 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated
 {
     [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
 }
 - (void) layoutSubviews
 {
     [super layoutSubviews];
     
-    self.imageView.frame = CGRectMake( 15,10, 70, 70 ); // your positioning here
+    self.imageView.frame = CGRectMake( 15,10, 70, 70 );
 }
 
 @end

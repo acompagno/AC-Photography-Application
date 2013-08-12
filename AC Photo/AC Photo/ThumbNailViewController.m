@@ -10,109 +10,228 @@
 #import "ThumbNailViewController.h"
 #import "CustomCollectionCell.h"
 #import "UIImageView+WebCache.h"
-#import "UIImage+Resize.h"
+#import "FTAnimation+UIView.h"
+#import "FTAnimation.h"
 
-#define jsonDataURL [NSURL URLWithString:@"http://www.weebly.com/uploads/6/5/5/1/6551078/acphoto.json"]
-
+#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 @interface ThumbNailViewController ()
 
 @end
 
 @implementation ThumbNailViewController
-NSArray *GalleryData;
-NSDictionary* json_data;
-//MWPhotoBrowser
+
+@synthesize collectionViewThumbnails;
+@synthesize photos;
+@synthesize internetAlertGalBackground;
+
+NSArray *galleryData;
+BOOL didFinishLoadingGal = NO;
+BOOL isConnectedGal = NO ;
 
 - (void)viewDidLoad
 {
-    ThirdAppDel=[[UIApplication sharedApplication]delegate];
-    // Do any additional setup after loading the view from its nib.
-    NSData* data = [NSData dataWithContentsOfURL:
-                    jsonDataURL];
-    NSError* error;
-    [self setTitle:ThirdAppDel.SecondTableSelection];
+    [super viewDidLoad];
     
-    json_data = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-    NSString *gal_name = [NSString stringWithFormat:@"%@_thumbs" , ThirdAppDel.SecondTableSelection];
+    /**************************
+     *Internet connection test*
+     **************************/
+    [self testInternetConnection];
     
-    GalleryData = [json_data objectForKey:gal_name];
+    /******
+     *Data*
+     ******/
+    //Initalize app delegate. used for global variables
+    thirdAppDel=[[UIApplication sharedApplication]delegate];
+    //fetch json data
+    NSString *gal_name = [NSString stringWithFormat:@"%@_thumbs" , thirdAppDel.secondTableSelection];
+    galleryData = [thirdAppDel.jsonData objectForKey:gal_name];
+    NSArray *imageurls = [thirdAppDel.jsonData objectForKey:thirdAppDel.secondTableSelection];
     
-    NSArray *imageurls = [json_data objectForKey:ThirdAppDel.SecondTableSelection];
-    //    [photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:@"http://farm4.static.flickr.com/3590/3329114220_5fbc5bc92b.jpg"]]];
+    /************************
+     *Minor view adjustments*
+     ************************/
+    //Set navigationbar title
+    [self setTitle:thirdAppDel.secondTableSelection];
+    //iAd Placehoder
+    UIView *iAdPlaceholder = [[UIView alloc] initWithFrame:CGRectMake(0 , self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height-50 , self.view.bounds.size.width, 50)];
+    iAdPlaceholder.backgroundColor=[UIColor redColor];
+    
+    /*************************
+     *Set up internet warning*
+     *************************/
+    CGRect internetBackgroundFrame = CGRectMake(0 , 0 , self.view.bounds.size.width, 33);
+    self.internetAlertGalBackground = [[UIView alloc] initWithFrame:internetBackgroundFrame];
+    self.internetAlertGalBackground.backgroundColor = RGBA(204 , 61 , 61 , .9);
+    UILabel *yourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 , 0 , self.view.bounds.size.width , 30)];
+    [yourLabel setTextAlignment:NSTextAlignmentCenter];
+    [yourLabel setTextColor:[UIColor whiteColor]];
+    [yourLabel setBackgroundColor:[UIColor clearColor]];
+    [yourLabel setText:@"No Internet Connection"];
+    [yourLabel setFont:[UIFont boldSystemFontOfSize:15]];
+    [self.internetAlertGalBackground addSubview:yourLabel];
+    
+    /**********************
+     *Set up photo browser*
+     **********************/
+    //load images for the photobrowser
+    self.photos = [NSMutableArray array];
     int x;
     for(x = 0 ; x < [imageurls count] ; x++)
     {
         [self.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.weebly.com/uploads/6/5/5/1/6551078/%@" , imageurls[x]]]]];
     }
+    
+    //initialize and set up photobrowser
     photoGallery = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    photoGallery.wantsFullScreenLayout = YES;
-    photoGallery.displayActionButton = YES;
-    //        [photoGallery setInitialPageIndex:1]; // Example: allows second image to be presented first
+    if (photoGallery)
+    {
+        photoGallery.wantsFullScreenLayout = YES;
+        photoGallery.displayActionButton = YES;
+    }
     
+    /************************
+     *Set up collection view*
+     ************************/
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-    _collectionView=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - self.navigationController.navigationBar.bounds.size.height) collectionViewLayout:layout];
-    
-    [_collectionView setDataSource:self];
-    [_collectionView setDelegate:self];
-    
-    [_collectionView registerClass:[CustomCollectionCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-    [_collectionView setBackgroundColor:[UIColor blackColor]];
-    
-    [self.view addSubview:_collectionView];
-    
-    [super viewDidLoad];
+    collectionViewThumbnails=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - self.navigationController.navigationBar.bounds.size.height - 50) collectionViewLayout:layout];
+    if (collectionViewThumbnails && layout)
+    {
+        [collectionViewThumbnails setDataSource:self];
+        [collectionViewThumbnails setDelegate:self];
+        [collectionViewThumbnails registerClass:[CustomCollectionCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+        [collectionViewThumbnails setBackgroundColor:[UIColor blackColor]];
+        
+        [self.view addSubview:collectionViewThumbnails];
+        [self.view addSubview:iAdPlaceholder];
+    }
 }
 
+#pragma mark - CollectionView -
+
+/************************
+ *CollectionView methods*
+ ************************/
+
+//Number of items in the collectionview
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [GalleryData count];
+    return [galleryData count];
 }
 
+//Set up what each cell in the collectionview will look like
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    //initialize custom cell for the collectionview
     CustomCollectionCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
     
-    NSString *url = [NSString stringWithFormat:@"http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/%@",GalleryData[indexPath.item]];
+    [cell.imageView setClipsToBounds:YES];
     
+    cell.imageView.contentMode = UIViewContentModeScaleAspectFill;
+    
+    //format url to load image from
+    NSString *url = [NSString stringWithFormat:@"http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/%@",galleryData[indexPath.item]];
+    
+    //load thumbnail
     [cell.imageView setImageWithURL:[NSURL URLWithString:url]
                    placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
+    //Sets up taprecognizer for each cell. (onlcick)
     UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
     [cell addGestureRecognizer:tap];
     
+    //sets cell's background color to black
     cell.backgroundColor=[UIColor blackColor];
     return cell;
 }
 
+//Sets size of cells in the collectionview
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     return CGSizeMake(100, 100);
 }
 
+//Sets what happens when a cell in the collectionview is selected (onlclicklistener)
 - (void)handleTap:(UITapGestureRecognizer *)recognizer  {
+    //gets the cell thats was clicked
     CustomCollectionCell *cell_test = (CustomCollectionCell *)recognizer.view;
-    NSIndexPath *indexPath = [_collectionView indexPathForCell:cell_test];
     
-    [self.navigationController pushViewController:photoGallery animated:YES];
+    //gets indexpath of the cell
+    NSIndexPath *indexPath = [collectionViewThumbnails indexPathForCell:cell_test];
     
-    
-    //    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No network connection"
-    //                                                    message:[NSString stringWithFormat:@"index - %d" , indexPath.row]
-    //                                                   delegate:nil
-    //                                          cancelButtonTitle:@"OK"
-    //                                          otherButtonTitles:nil];
-    //    [alert show];
-    //
+    if (isConnectedGal)
+    {
+        //sets the image that will be displayed in the photo browser
+        [photoGallery setInitialPageIndex:indexPath.row];
+        
+        //pushed photobrowser
+        [self.navigationController pushViewController:photoGallery animated:YES];
+    }
 }
 
+#pragma mark - MWPhotoBrowser -
+/******************************
+*mwphotobrowser delegate stuff*
+******************************/
 - (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
     return self.photos.count;
 }
-
 - (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
     if (index < self.photos.count)
         return [self.photos objectAtIndex:index];
     return nil;
 }
+
+#pragma mark - Internet -
+
+/***************************
+ *Tests internet connection*
+ ***************************/
+
+- (void)testInternetConnection
+{
+    __weak typeof(self) weakSelf = self;
+    
+    internetReachableGal = [Reachability reachabilityWithHostname:@"www.google.com"];
+    
+    // Internet is reachable
+    internetReachableGal.reachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //Removes the warning
+            if (! weakSelf.internetAlertGalBackground.hidden)
+            {
+                [weakSelf.internetAlertGalBackground slideOutTo:kFTAnimationTop duration:.3 delegate:nil];
+            }
+            //Tells the app that there is now an internet conencton
+            isConnectedGal = YES;
+            
+            //Loads the view if it wants laoded already
+            
+            [weakSelf.collectionViewThumbnails reloadData];
+        });
+    };
+    
+    // Internet is not reachable
+    internetReachableGal.unreachableBlock = ^(Reachability*reach)
+    {
+        // Update the UI on the main thread
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //Pushes the warning view
+            if (![weakSelf.internetAlertGalBackground isDescendantOfView:weakSelf.view])
+            {
+                [weakSelf.view insertSubview:weakSelf.internetAlertGalBackground aboveSubview:weakSelf.collectionViewThumbnails];
+            }
+            if (weakSelf.internetAlertGalBackground.hidden)
+            {
+                [weakSelf.internetAlertGalBackground slideInFrom:kFTAnimationTop duration:.3 delegate:nil];
+            }
+            isConnectedGal = NO;
+        });
+    };
+    
+    [internetReachableGal startNotifier];
+}
+
 @end

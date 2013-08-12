@@ -9,15 +9,20 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "MWPhotoBrowser.h"
-
-AppDelegate *ThirdAppDel;
+#import "Reachability.h"
+AppDelegate *thirdAppDel;
 
 
 @interface ThumbNailViewController : UIViewController<UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,MWPhotoBrowserDelegate>
 {
-    UICollectionView *_collectionView;
+    Reachability *internetReachableGal;
+    UICollectionView *collectionViewThumbnails;
     MWPhotoBrowser *photoGallery;
+    UIView *internetAlertGalBackground;
 }
-@property (nonatomic, retain) IBOutlet  NSMutableArray *photos;
+
+@property (nonatomic , retain) NSMutableArray *photos;
+@property (nonatomic , retain) UIView *internetAlertGalBackground;
+@property (nonatomic , retain) UICollectionView *collectionViewThumbnails;
 
 @end

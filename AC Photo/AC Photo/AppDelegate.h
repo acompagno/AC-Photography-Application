@@ -10,13 +10,17 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
-    NSString *RootTableSelection;
-    NSString *SecondTableSelection;
+    NSString *rootTableSelection;
+    NSString *recondTableSelection;
+    NSData *data;
+    NSDictionary *jsonData;
 }
 
-@property (nonatomic, retain) IBOutlet UIWindow *window;
-@property (nonatomic, retain) UINavigationController *navController;
-@property(nonatomic,retain) NSString *RootTableSelection;
-@property(nonatomic,retain) NSString *SecondTableSelection;
+@property (nonatomic , retain) UIWindow *window;
+@property (nonatomic , retain) UINavigationController *navController;
+@property (nonatomic , retain) NSString *rootTableSelection;
+@property (nonatomic , retain) NSString *secondTableSelection;
+@property (nonatomic , retain) NSData *data;
+@property (nonatomic , retain) NSDictionary *jsonData;
 
 @end

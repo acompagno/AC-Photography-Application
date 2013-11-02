@@ -40,11 +40,13 @@ NSString *tempStrHolderSel;
      **************************/
     [self testInternetConnection];
     
+//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
+    
     //Initalize app delegate. used for global variables
     secondaryAppDel=[[UIApplication sharedApplication]delegate];
     //Load json data
     tableData2 = [secondaryAppDel.jsonData objectForKey:secondaryAppDel.rootTableSelection];
-
+    
     /************************
      *Minor view adjustments*
      ************************/
@@ -54,16 +56,15 @@ NSString *tempStrHolderSel;
     self.view.backgroundColor = RGBA(224, 224,224, 1);
     
     //iAd Placehoder
-    UIView *iAdPlaceholder = [[UIView alloc] initWithFrame:CGRectMake(0 , self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height-50 , self.view.bounds.size.width, 50)];
+    UIView *iAdPlaceholder = [[UIView alloc] initWithFrame:CGRectMake(0 , self.view.bounds.size.height -50 , self.view.bounds.size.width, 50)];
     iAdPlaceholder.backgroundColor=[UIColor redColor];
-    
     /*************************
      *Set up internet warning*
      *************************/
-    CGRect internetBackgroundFrame = CGRectMake(0 , 0 , self.view.bounds.size.width, 33);
+    CGRect internetBackgroundFrame = CGRectMake(0 , 60 , self.view.bounds.size.width, 33);
     self.internetAlertSelBackground = [[UIView alloc] initWithFrame:internetBackgroundFrame];
-    self.internetAlertSelBackground.backgroundColor = RGBA(204 , 61 , 61 , .9);
-    UILabel *yourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 , 0 , self.view.bounds.size.width , 30)];
+    self.internetAlertSelBackground.backgroundColor = RGBA(204 , 61 , 61 , .90);
+    UILabel *yourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 , 3 , self.view.bounds.size.width , 30)];
     [yourLabel setTextAlignment:NSTextAlignmentCenter];
     [yourLabel setTextColor:[UIColor whiteColor]];
     [yourLabel setBackgroundColor:[UIColor clearColor]];
@@ -74,13 +75,13 @@ NSString *tempStrHolderSel;
     /******************
      *Set up TableView*
      ******************/
-    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height-50)];
+    self.tableView2 = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-50)];
     
     if (tableView2)
     {
         self.tableView2.dataSource = self;
         self.tableView2.delegate = self;
-        self.tableView2.backgroundColor = [UIColor clearColor];
+        self.tableView2.backgroundColor = RGBA(224, 224,224, 1);
         [self.tableView2 setSeparatorColor:[UIColor clearColor]];
         [self.tableView2 reloadData];
         
@@ -144,7 +145,7 @@ NSString *tempStrHolderSel;
     //Set background image for the cell
     cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellBackgroundSel.png"]];
     cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellBackgroundSelClick.png"]];
-    
+    cell.backgroundColor = RGBA(224, 224,224, 1);
     return cell;
 }
 
@@ -186,7 +187,7 @@ NSString *tempStrHolderSel;
 - (void)testInternetConnection
 {
     __weak typeof(self) weakSelf = self;
-
+    
     internetReachableSel = [Reachability reachabilityWithHostname:@"www.google.com"];
     
     // Internet is reachable

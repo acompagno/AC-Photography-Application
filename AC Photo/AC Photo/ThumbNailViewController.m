@@ -40,30 +40,33 @@ BOOL isConnectedGal = NO ;
     
     /******
      *Data*
-     ******/
+     **** **/
     //Initalize app delegate. used for global variables
     thirdAppDel=[[UIApplication sharedApplication]delegate];
+
     //fetch json data
     NSString *gal_name = [NSString stringWithFormat:@"%@_thumbs" , thirdAppDel.secondTableSelection];
     galleryData = [thirdAppDel.jsonData objectForKey:gal_name];
     NSArray *imageurls = [thirdAppDel.jsonData objectForKey:thirdAppDel.secondTableSelection];
+    
     
     /************************
      *Minor view adjustments*
      ************************/
     //Set navigationbar title
     [self setTitle:thirdAppDel.secondTableSelection];
+    
     //iAd Placehoder
-    UIView *iAdPlaceholder = [[UIView alloc] initWithFrame:CGRectMake(0 , self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height-50 , self.view.bounds.size.width, 50)];
+    UIView *iAdPlaceholder = [[UIView alloc] initWithFrame:CGRectMake(0 , self.view.bounds.size.height -50 , self.view.bounds.size.width, 50)];
     iAdPlaceholder.backgroundColor=[UIColor redColor];
     
     /*************************
      *Set up internet warning*
      *************************/
-    CGRect internetBackgroundFrame = CGRectMake(0 , 0 , self.view.bounds.size.width, 33);
+    CGRect internetBackgroundFrame = CGRectMake(0 , 60 , self.view.bounds.size.width, 33);
     self.internetAlertGalBackground = [[UIView alloc] initWithFrame:internetBackgroundFrame];
-    self.internetAlertGalBackground.backgroundColor = RGBA(204 , 61 , 61 , .9);
-    UILabel *yourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 , 0 , self.view.bounds.size.width , 30)];
+    self.internetAlertGalBackground.backgroundColor = RGBA(204 , 61 , 61 , .90);
+    UILabel *yourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 , 3 , self.view.bounds.size.width , 30)];
     [yourLabel setTextAlignment:NSTextAlignmentCenter];
     [yourLabel setTextColor:[UIColor whiteColor]];
     [yourLabel setBackgroundColor:[UIColor clearColor]];
@@ -94,7 +97,7 @@ BOOL isConnectedGal = NO ;
      *Set up collection view*
      ************************/
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-    collectionViewThumbnails=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - self.navigationController.navigationBar.bounds.size.height - 50) collectionViewLayout:layout];
+    collectionViewThumbnails=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50) collectionViewLayout:layout];
     if (collectionViewThumbnails && layout)
     {
         [collectionViewThumbnails setDataSource:self];

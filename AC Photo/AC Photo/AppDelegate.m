@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "MainViewController.h"
 
+#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+
 @implementation AppDelegate
 @synthesize rootTableSelection;
 @synthesize secondTableSelection;
@@ -18,6 +20,9 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    //    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:NO];
+    self.window.backgroundColor = RGBA(224, 224,224, 1);
+    
     UIViewController *mainView = [[MainViewController alloc]
                                   initWithNibName:nil
                                   bundle:nil];

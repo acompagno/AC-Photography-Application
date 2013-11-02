@@ -38,12 +38,17 @@ UIBarButtonItem *infoButton;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+//    [[UIApplication sharedApplication] setStatusBarHidden:NO];
     /**************************
      *Internet connection test*
      **************************/
     [self testInternetConnection];
-
+    
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    
+    //Fix uiscollviews
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
     /**********************
      *Set up navigationbar*
      **********************/
@@ -51,11 +56,11 @@ UIBarButtonItem *infoButton;
     [self setTitle:@"Featured"];
 
     //Set the Color of the navigationbar
-    self.view.backgroundColor = RGBA(224, 224,224, 1);
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    self.view.backgroundColor = RGBA(224, 224 , 224, 1);
+    self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
     [self.navigationController.navigationBar setTintColor:RGBA(1,176,129, 1)];
-    [self.navigationController.navigationBar setBackgroundImage:[[[Utils alloc] init] imageWithColor:RGBA(1,176,129 , 1)]
-                                                  forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:[[[Utils alloc] init] imageWithColor:RGBA(1,176,129 , 1)]
+//                                                  forBarMetrics:UIBarMetricsDefault];
     //Create info button in navigation bar
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -76,16 +81,16 @@ UIBarButtonItem *infoButton;
     }
     
     //AdView PlaceHolder
-    UIView *iAdPlaceholder = [[UIView alloc] initWithFrame:CGRectMake(0 , self.view.frame.size.height - self.navigationController.navigationBar.frame.size.height-50 , self.view.bounds.size.width, 50)];
+    UIView *iAdPlaceholder = [[UIView alloc] initWithFrame:CGRectMake(0 , self.view.bounds.size.height -50 , self.view.bounds.size.width, 50)];
     iAdPlaceholder.backgroundColor=[UIColor redColor];
     
     /*************************
      *Set up internet warning*
      *************************/
-    CGRect internetBackgroundFrame = CGRectMake(0 , 0 , self.view.bounds.size.width, 33);
+    CGRect internetBackgroundFrame = CGRectMake(0 , 60 , self.view.bounds.size.width, 33);
     self.internetAlertMainBackground = [[UIView alloc] initWithFrame:internetBackgroundFrame];
     self.internetAlertMainBackground.backgroundColor = RGBA(204 , 61 , 61 , .90);
-    UILabel *internetWarningText = [[UILabel alloc] initWithFrame:CGRectMake(0 , 0 , self.view.bounds.size.width , 30)];
+    UILabel *internetWarningText = [[UILabel alloc] initWithFrame:CGRectMake(0 , 3 , self.view.bounds.size.width , 30)];
     [internetWarningText setTextAlignment:NSTextAlignmentCenter];
     [internetWarningText setTextColor:[UIColor whiteColor]];
     [internetWarningText setBackgroundColor:[UIColor clearColor]];
@@ -97,7 +102,7 @@ UIBarButtonItem *infoButton;
      *Set up info View*
      ******************/
     //Set up content view and background
-    self.infoView = [[UIView alloc] initWithFrame:CGRectMake(30 , (self.view.bounds.size.height-self.navigationController.navigationBar.frame.size.height-234)/2 , self.view.bounds.size.width-60,  234)];
+    self.infoView = [[UIView alloc] initWithFrame:CGRectMake(30 , (self.view.bounds.size.height-234)/2 , self.view.bounds.size.width-60,  234)];
     self.infoView.backgroundColor = [UIColor whiteColor];
     self.infoBackground = [[UIView alloc] initWithFrame:CGRectMake(0 , 0 , self.view.bounds.size.width,  self.view.bounds.size.height)];
     self.infoBackground.backgroundColor = RGBA(0, 0, 0, .7);
@@ -109,7 +114,7 @@ UIBarButtonItem *infoButton;
     UITapGestureRecognizer *fbButton =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fbLaunch:)];
     [fbButton setNumberOfTapsRequired:1];
     [fbButtonImg addGestureRecognizer:fbButton];
-    UILabel *fbText = [[UILabel alloc] initWithFrame:CGRectMake(59 , 20 , self.view.bounds.size.width-60-15-50 , 40)];
+    UILabel *fbText = [[UILabel alloc] initWithFrame:CGRectMake(59 , 15 , self.view.bounds.size.width-60-15-50 , 50)];
     [fbText setTextAlignment:NSTextAlignmentCenter];
     fbText.lineBreakMode = NSLineBreakByWordWrapping;
     fbText.numberOfLines = 2;
@@ -125,7 +130,7 @@ UIBarButtonItem *infoButton;
     UITapGestureRecognizer *webButton =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(webLaunch:)];
     [webButton setNumberOfTapsRequired:1];
     [webButtonImg addGestureRecognizer:webButton];
-    UILabel *webText = [[UILabel alloc] initWithFrame:CGRectMake(59 , 85 , self.view.bounds.size.width-60-15-50 , 40)];
+    UILabel *webText = [[UILabel alloc] initWithFrame:CGRectMake(59 , 80 , self.view.bounds.size.width-60-15-50 , 50)];
     [webText setTextAlignment:NSTextAlignmentCenter];
     webText.lineBreakMode = NSLineBreakByWordWrapping;
     webText.numberOfLines = 2;
@@ -135,7 +140,7 @@ UIBarButtonItem *infoButton;
     [webText setText:@"Visit the AndreCompagno Photography website"];
     
     //Set up application information text
-    UILabel *infoText = [[UILabel alloc] initWithFrame:CGRectMake(0 , 160 , self.view.bounds.size.width-60 , 60)];
+    UILabel *infoText = [[UILabel alloc] initWithFrame:CGRectMake(0 , 145 , self.view.bounds.size.width-60 , 80)];
     [infoText setTextAlignment:NSTextAlignmentCenter];
     infoText.lineBreakMode = NSLineBreakByWordWrapping;
     infoText.numberOfLines = 0;
@@ -161,7 +166,7 @@ UIBarButtonItem *infoButton;
     self.scrollViewFeatured = [[UIScrollView alloc] init];
     if (self.scrollViewFeatured)
     {
-        self.scrollViewFeatured.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 50 - 44 - 88);
+        self.scrollViewFeatured.frame = CGRectMake(0, 60 , self.view.frame.size.width, self.view.frame.size.height - 50 - 60 - 88);
         [self.scrollViewFeatured setPagingEnabled:YES];
         self.scrollViewFeatured.contentSize = CGSizeMake(self.scrollViewFeatured.frame.size.width*5, self.scrollViewFeatured.frame.size.height);
         self.scrollViewFeatured.backgroundColor = RGBA(0, 0, 0, .75);
@@ -173,7 +178,7 @@ UIBarButtonItem *infoButton;
     self.pageControl = [[UIPageControl alloc] init];
     if (self.pageControl)
     {
-        self.pageControl.frame = CGRectMake( 0, 0, self.view.bounds.size.width, 15);
+        self.pageControl.frame = CGRectMake( 0, 65, self.view.bounds.size.width, 15);
         [self.pageControl setNumberOfPages:5];
         [self.pageControl setCurrentPage:0];
         [self.pageControl setBackgroundColor:[UIColor clearColor]];
@@ -185,7 +190,7 @@ UIBarButtonItem *infoButton;
     self.tableViewMain = [[UITableView alloc] init];
     if (self.tableViewMain)
     {
-        self.tableViewMain .frame = CGRectMake(0  , self.scrollViewFeatured.frame.size.height , self.view.bounds.size.width, 88);
+        self.tableViewMain .frame = CGRectMake(0  , self.scrollViewFeatured.bounds.size.height + 60 , self.view.bounds.size.width, 88);
         
         self.tableViewMain.dataSource = self;
         self.tableViewMain.delegate = self;
@@ -204,17 +209,19 @@ UIBarButtonItem *infoButton;
         [self.view addSubview:self.scrollViewFeatured ];
         [self.view addSubview:iAdPlaceholder];
         [self.view addSubview:self.tableViewMain];
-        //Page controle gets added above the scrollview not inside it 
+        //Page controle gets added above the scrollview not inside it
         [self.view insertSubview:self.pageControl aboveSubview:self.scrollViewFeatured];
     }
 }
 
 #pragma mark - Button Methods -
+
 /********************************************************
  *Loads the website in the safari web browser           *
  *Called when the website icon is clicked               *
  *Only works when there is an active internet connection*
  ********************************************************/
+
 -(void)webLaunch:(UIGestureRecognizer *)recognizer
 {
     if (isConnected)
@@ -244,7 +251,10 @@ UIBarButtonItem *infoButton;
     }
 }
 
-//Info button action
+/* *********************************************
+ *Loads or closes the information view          *
+ *Called when the information button is pressed*
+ ***********************************************/
 -(IBAction)infoButtonPressed
 {
     //if info view is visible
@@ -289,7 +299,7 @@ UIBarButtonItem *infoButton;
     for(int i=1;i<6;i++)
     {
         UIImageView *image = [[UIImageView alloc] init];
-        image.frame = CGRectMake(0+x, 0, 320, self.scrollViewFeatured.frame.size.height);
+        image.frame = CGRectMake(0+x, 0, 320, self.scrollViewFeatured.bounds.size.height);
         [image setClipsToBounds:YES];
         image.contentMode = UIViewContentModeScaleAspectFill;
         [image setImageWithURL:[NSURL URLWithString:featured[i-1]]];
@@ -327,13 +337,20 @@ UIBarButtonItem *infoButton;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
+//    
+//    NSArray *tempIMG = [mainAppDel.jsonData objectForKey:[NSString stringWithFormat:@"%@_Images",[mainTableData objectAtIndex:indexPath.row]]];
+//    
+//    NSString *imageURL = [tempIMG objectAtIndex:[tempIMG count]-1];
+//    
+//    [cell.imageView setImageWithURL:[NSURL URLWithString:imageURL]
+//                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     //Set the text from the json data
     cell.textLabel.text = [NSString stringWithFormat:@"%@" , [mainTableData objectAtIndex:indexPath.row]];
     
     //Set the background images for the cells
-    //    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellBackgroundMain.png"]];
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellBackgroundMainClick.png"]];
+//    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellBackgroundMain.png"]];
+//    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellBackgroundMainClick.png"]];
     
     return cell;
 }
@@ -367,6 +384,7 @@ UIBarButtonItem *infoButton;
 /*********************
  *Pagecontrol Methods*
  *********************/
+
 //Sets the Pagecontrol when the scrollview is scrolled
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {

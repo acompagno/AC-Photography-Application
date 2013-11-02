@@ -40,8 +40,6 @@ NSString *tempStrHolderSel;
      **************************/
     [self testInternetConnection];
     
-//    self.navigationController.navigationBar.barStyle = UIBarStyleBlackTranslucent;
-    
     //Initalize app delegate. used for global variables
     secondaryAppDel=[[UIApplication sharedApplication]delegate];
     //Load json data

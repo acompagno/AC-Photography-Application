@@ -337,20 +337,9 @@ UIBarButtonItem *infoButton;
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
-//    
-//    NSArray *tempIMG = [mainAppDel.jsonData objectForKey:[NSString stringWithFormat:@"%@_Images",[mainTableData objectAtIndex:indexPath.row]]];
-//    
-//    NSString *imageURL = [tempIMG objectAtIndex:[tempIMG count]-1];
-//    
-//    [cell.imageView setImageWithURL:[NSURL URLWithString:imageURL]
-//                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
     //Set the text from the json data
     cell.textLabel.text = [NSString stringWithFormat:@"%@" , [mainTableData objectAtIndex:indexPath.row]];
-    
-    //Set the background images for the cells
-//    cell.backgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellBackgroundMain.png"]];
-//    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"CellBackgroundMainClick.png"]];
     
     return cell;
 }

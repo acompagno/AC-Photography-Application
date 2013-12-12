@@ -11,7 +11,7 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     NSString *rootTableSelection;
-    NSString *recondTableSelection;
+    NSString *secondTableSelection;
     NSData *data;
     NSDictionary *jsonData;
 }

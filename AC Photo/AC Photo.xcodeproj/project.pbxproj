@@ -30,6 +30,7 @@
 		3016FEA51859ECA3009D19E2 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 3016FEA41859ECA3009D19E2 /* MBProgressHUD.m */; };
 		30229F9217B0A95F00D62060 /* CustomTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30229F9117B0A95F00D62060 /* CustomTableCell.m */; };
 		30229F9517B0B2A500D62060 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 30229F9417B0B2A500D62060 /* Utils.m */; };
+		302CD909186080FA0039B6BD /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 302CD908186080FA0039B6BD /* MWPhotoBrowser.bundle */; };
 		30458BEF17B3D11D005CDBAA /* CellBackgroundMainClick.png in Resources */ = {isa = PBXBuildFile; fileRef = 30458BEE17B3D11D005CDBAA /* CellBackgroundMainClick.png */; };
 		30458BF517B3E465005CDBAA /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 30458BF417B3E465005CDBAA /* SystemConfiguration.framework */; };
 		305A0FB217B8C59900F5CC8D /* FBLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 305A0FB117B8C59900F5CC8D /* FBLogo.png */; };
@@ -53,7 +54,6 @@
 		30B458E018565837006987C2 /* FTAnimationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B458DC18565837006987C2 /* FTAnimationManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		30B458E118565837006987C2 /* FTUtils+NSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B458DD18565837006987C2 /* FTUtils+NSObject.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		30B458E218565837006987C2 /* FTUtils+UIGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B458DE18565837006987C2 /* FTUtils+UIGestureRecognizer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		30C9A1BE17B2DFC500FD34A6 /* MWPhotoBrowser.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 30C9A1AC17B2DFC500FD34A6 /* MWPhotoBrowser.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -98,6 +98,7 @@
 		30229F9117B0A95F00D62060 /* CustomTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableCell.m; sourceTree = "<group>"; };
 		30229F9317B0B2A500D62060 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		30229F9417B0B2A500D62060 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		302CD908186080FA0039B6BD /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MWPhotoBrowser.bundle; path = Libraries/MWPhotoBrowser/MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 		30458BEE17B3D11D005CDBAA /* CellBackgroundMainClick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CellBackgroundMainClick.png; sourceTree = "<group>"; };
 		30458BF417B3E465005CDBAA /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		305A0FB117B8C59900F5CC8D /* FBLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FBLogo.png; sourceTree = "<group>"; };
@@ -139,7 +140,6 @@
 		30B458E618565848006987C2 /* FTUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FTUtils.h; path = Libraries/FTUtils/Headers/FTUtils/FTUtils.h; sourceTree = SOURCE_ROOT; };
 		30B458E718565848006987C2 /* FTUtils+NSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FTUtils+NSObject.h"; path = "Libraries/FTUtils/Headers/FTUtils/FTUtils+NSObject.h"; sourceTree = SOURCE_ROOT; };
 		30B458E818565848006987C2 /* FTUtils+UIGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "FTUtils+UIGestureRecognizer.h"; path = "Libraries/FTUtils/Headers/FTUtils/FTUtils+UIGestureRecognizer.h"; sourceTree = SOURCE_ROOT; };
-		30C9A1AC17B2DFC500FD34A6 /* MWPhotoBrowser.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = MWPhotoBrowser.bundle; path = ../../MWPhotoBrowser/MWPhotoBrowser/MWPhotoBrowser.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,8 +181,8 @@
 		300B037317AE6680007FF7EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				302CD908186080FA0039B6BD /* MWPhotoBrowser.bundle */,
 				30458BF417B3E465005CDBAA /* SystemConfiguration.framework */,
-				30C9A1AC17B2DFC500FD34A6 /* MWPhotoBrowser.bundle */,
 				30AED51F17B23115004AC567 /* MessageUI.framework */,
 				30AED51D17B230D1004AC567 /* QuartzCore.framework */,
 				300B03D417AE67F0007FF7EE /* ImageIO.framework */,
@@ -412,12 +412,12 @@
 				300B037F17AE6680007FF7EE /* InfoPlist.strings in Resources */,
 				300B038717AE6680007FF7EE /* Default.png in Resources */,
 				300B038917AE6680007FF7EE /* Default@2x.png in Resources */,
+				302CD909186080FA0039B6BD /* MWPhotoBrowser.bundle in Resources */,
 				300B038B17AE6680007FF7EE /* Default-568h@2x.png in Resources */,
 				30AED4D917B1DC29004AC567 /* CellBackgroundMain.png in Resources */,
 				30AED4DA17B1DC29004AC567 /* CellBackgroundSel.png in Resources */,
 				30AED4DB17B1DC29004AC567 /* CellBackgroundSelClick.png in Resources */,
 				30AED4DC17B1DC29004AC567 /* placeholder.png in Resources */,
-				30C9A1BE17B2DFC500FD34A6 /* MWPhotoBrowser.bundle in Resources */,
 				30458BEF17B3D11D005CDBAA /* CellBackgroundMainClick.png in Resources */,
 				305A0FB217B8C59900F5CC8D /* FBLogo.png in Resources */,
 				305A0FB417B8DD3E00F5CC8D /* WebsiteButton.png in Resources */,

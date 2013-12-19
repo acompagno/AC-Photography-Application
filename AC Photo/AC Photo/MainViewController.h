@@ -9,19 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "AppDelegate.h"
 #import "Reachability.h"
-#import "iAd/ADBannerView.h"
 
-AppDelegate *mainAppDel;
-
-@interface MainViewController :  UIViewController<UINavigationBarDelegate,UITableViewDelegate,UITableViewDataSource,ADBannerViewDelegate>
+@interface MainViewController :  UIViewController<UINavigationBarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
-    UIPageControl *pageControl;
-    UIScrollView *scrollViewFeatured;
-    UITableView *tableViewMain;
+    AppDelegate *mainAppDel;
     Reachability *internetReachableMain;
-    UIView *infoBackground;
-    UIView *infoView;
-    UIView *internetAlertMainBackground;
+    NSArray *mainTableData;
+    UIBarButtonItem *infoButton;
+    NSDictionary *titleOptions;
 }
 
 @property (nonatomic , retain) UIScrollView* scrollViewFeatured;
@@ -30,5 +25,12 @@ AppDelegate *mainAppDel;
 @property (nonatomic , retain) UIView *infoBackground;
 @property (nonatomic , retain) UIView *infoView;
 @property (nonatomic , retain) UIView *internetAlertMainBackground;
+
+- (void)webLaunch:(UIGestureRecognizer *)recognizer;
+- (void)fbLaunch:(UIGestureRecognizer *)recognizer;
+- (void)infoButtonPressed;
+- (void)dismissInfoView;
+- (void)loadData;
+- (void)testInternetConnection;
 
 @end

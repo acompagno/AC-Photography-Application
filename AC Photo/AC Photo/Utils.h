@@ -12,11 +12,20 @@
 
 @interface Utils : NSObject
 
-// http://stackoverflow.com/questions/683211/method-syntax-in-objective-c
-// This is a message method in order to practice creating methods in iOS
-- (void)createDialog:(NSString *)title dialogMessage:(NSString *)message;
-
 // Creates image from a color
 - (UIImage *)imageWithColor:(UIColor *)color;
 
+//Check system version
+- (BOOL)sysVersionEqualTo:(NSString *)version;
+- (BOOL)sysVersionGreaterThan:(NSString *)version;
+- (BOOL)sysVersionGreaterThanOrEqualTo:(NSString *)version;
+- (BOOL)sysVersionLessThan:(NSString *)version;
+- (BOOL)sysVersionLessThanOrEqualTo:(NSString *)version;
+
+//gets the navbar height depending on version
+- (int)getNavBarHeight:(int)navBar withStatusbar:(int)statBar;
+
+//Animations for the internet warning views
+- (BOOL) animationSlideIn:(UIView *)internetWarning shouldUseiOS7Offset:(BOOL)is7 navBarHeight:(int)navHeight;
+- (BOOL) animationSlideOut:(UIView *)internetWarning;
 @end

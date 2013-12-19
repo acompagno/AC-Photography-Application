@@ -11,4 +11,8 @@
 @interface CustomCollectionCell : UICollectionViewCell
 
 @property (nonatomic , retain) UIImageView *imageView;
+@property (nonatomic , retain) UIView *selectionView;
+
+- (void)setupViews;
+
 @end

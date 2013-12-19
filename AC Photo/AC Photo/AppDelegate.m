@@ -20,14 +20,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    //    [[UIApplication sharedApplication] setStatusBarHidden:NO animated:NO];
+    
+    [[UIApplication sharedApplication] setStatusBarHidden: NO];
+    
     self.window.backgroundColor = RGBA(224, 224,224, 1);
     
     UIViewController *mainView = [[MainViewController alloc]
                                   initWithNibName:nil
                                   bundle:nil];
+    
     self.navController = [[UINavigationController alloc] initWithRootViewController:mainView];
-    [[self window] setRootViewController:_navController];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackOpaque
+                                                animated:NO];
+    
+    [[self window] setRootViewController:self.navController];
     
     [self.window makeKeyAndVisible];
     return YES;

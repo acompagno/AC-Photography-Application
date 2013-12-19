@@ -10,10 +10,13 @@
 #import "ThumbNailViewController.h"
 #import "CustomCollectionCell.h"
 #import "UIImageView+WebCache.h"
-#import "FTAnimation+UIView.h"
-#import "FTAnimation.h"
+#import "Utils.h"
 
 #define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
+#define totalWidth ((CGFloat) self.view.bounds.size.width)
+#define totalHeight ((CGFloat) self.view.bounds.size.height)
+#define isiOS7 ((BOOL) [[Utils alloc] sysVersionGreaterThanOrEqualTo:@"7.0"])
+#define navHeight ((int) [[Utils alloc] getNavBarHeight:self.navigationController.navigationBar.frame.size.height withStatusbar:[UIApplication sharedApplication].statusBarFrame.size.height])
 
 @interface ThumbNailViewController ()
 
@@ -21,11 +24,6 @@
 
 @implementation ThumbNailViewController
 
-@synthesize collectionViewThumbnails;
-@synthesize photos;
-@synthesize internetAlertGalBackground;
-
-NSArray *galleryData;
 BOOL didFinishLoadingGal = NO;
 BOOL isConnectedGal = NO ;
 
@@ -40,10 +38,10 @@ BOOL isConnectedGal = NO ;
     
     /******
      *Data*
-     **** **/
+     ******/
     //Initalize app delegate. used for global variables
     thirdAppDel=[[UIApplication sharedApplication]delegate];
-
+    
     //fetch json data
     NSString *gal_name = [NSString stringWithFormat:@"%@_thumbs" , thirdAppDel.secondTableSelection];
     galleryData = [thirdAppDel.jsonData objectForKey:gal_name];
@@ -56,17 +54,13 @@ BOOL isConnectedGal = NO ;
     //Set navigationbar title
     [self setTitle:thirdAppDel.secondTableSelection];
     
-    //iAd Placehoder
-    UIView *iAdPlaceholder = [[UIView alloc] initWithFrame:CGRectMake(0 , self.view.bounds.size.height -50 , self.view.bounds.size.width, 50)];
-    iAdPlaceholder.backgroundColor=[UIColor redColor];
-    
     /*************************
      *Set up internet warning*
      *************************/
-    CGRect internetBackgroundFrame = CGRectMake(0 , 60 , self.view.bounds.size.width, 33);
-    self.internetAlertGalBackground = [[UIView alloc] initWithFrame:internetBackgroundFrame];
+    self.internetAlertGalBackground = [[UIView alloc] initWithFrame:CGRectMake(0 , -33 , totalWidth , 33)] ;
     self.internetAlertGalBackground.backgroundColor = RGBA(204 , 61 , 61 , .90);
-    UILabel *yourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 , 3 , self.view.bounds.size.width , 30)];
+    self.internetAlertGalBackground.hidden = YES ;
+    UILabel *yourLabel = [[UILabel alloc] initWithFrame:CGRectMake(0 , 3 , totalWidth , 30)];
     [yourLabel setTextAlignment:NSTextAlignmentCenter];
     [yourLabel setTextColor:[UIColor whiteColor]];
     [yourLabel setBackgroundColor:[UIColor clearColor]];
@@ -78,35 +72,41 @@ BOOL isConnectedGal = NO ;
      *Set up photo browser*
      **********************/
     //load images for the photobrowser
-    self.photos = [NSMutableArray array];
+    photos = [NSMutableArray array];
     int x;
     for(x = 0 ; x < [imageurls count] ; x++)
     {
-        [self.photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.weebly.com/uploads/6/5/5/1/6551078/%@" , imageurls[x]]]]];
+        [photos addObject:[MWPhoto photoWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.weebly.com/uploads/6/5/5/1/6551078/%@" , imageurls[x]]]]];
     }
     
     //initialize and set up photobrowser
-    photoGallery = [[MWPhotoBrowser alloc] initWithDelegate:self];
-    if (photoGallery)
+    self.photoGallery = [[MWPhotoBrowser alloc] initWithDelegate:self];
+    self.photoGallery.navigationController.navigationBar.tintColor = isiOS7 ? RGBA(1,176,129, 1) : nil ;
+    if (self.photoGallery)
     {
-        photoGallery.wantsFullScreenLayout = YES;
-        photoGallery.displayActionButton = YES;
+        self.photoGallery.wantsFullScreenLayout = YES;
+        self.photoGallery.displayActionButton = YES;
     }
     
     /************************
      *Set up collection view*
      ************************/
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc] init];
-    collectionViewThumbnails=[[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 50) collectionViewLayout:layout];
-    if (collectionViewThumbnails && layout)
+    
+    self.collectionViewThumbnails = isiOS7 ? [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, totalWidth , totalHeight) collectionViewLayout:layout] : [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, totalWidth , totalHeight - navHeight) collectionViewLayout:layout];
+    
+    if (self.collectionViewThumbnails && layout)
     {
-        [collectionViewThumbnails setDataSource:self];
-        [collectionViewThumbnails setDelegate:self];
-        [collectionViewThumbnails registerClass:[CustomCollectionCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
-        [collectionViewThumbnails setBackgroundColor:[UIColor blackColor]];
-        
-        [self.view addSubview:collectionViewThumbnails];
-        [self.view addSubview:iAdPlaceholder];
+        [self.collectionViewThumbnails setDataSource:self];
+        [self.collectionViewThumbnails setDelegate:self];
+        [self.collectionViewThumbnails registerClass:[CustomCollectionCell class] forCellWithReuseIdentifier:@"cellIdentifier"];
+        [self.collectionViewThumbnails setBackgroundColor:[UIColor blackColor]];
+    }
+    
+    if (self.collectionViewThumbnails && self.internetAlertGalBackground)
+    {
+        [self.view addSubview:self.collectionViewThumbnails];
+        [self.view insertSubview:self.internetAlertGalBackground aboveSubview:self.collectionViewThumbnails];
     }
 }
 
@@ -139,13 +139,22 @@ BOOL isConnectedGal = NO ;
     [cell.imageView setImageWithURL:[NSURL URLWithString:url]
                    placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
     
-    //Sets up taprecognizer for each cell. (onlcick)
-    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    [cell addGestureRecognizer:tap];
-    
     //sets cell's background color to black
     cell.backgroundColor=[UIColor blackColor];
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [collectionView deselectItemAtIndexPath:indexPath animated:YES] ;
+    if (isConnectedGal)
+    {
+        //sets the image that will be displayed in the photo browser
+        [self.photoGallery setCurrentPhotoIndex:indexPath.row];
+        
+        //pushed photobrowser
+        [self.navigationController pushViewController:self.photoGallery animated:YES];
+    }
 }
 
 //Sets size of cells in the collectionview
@@ -154,34 +163,20 @@ BOOL isConnectedGal = NO ;
     return CGSizeMake(100, 100);
 }
 
-//Sets what happens when a cell in the collectionview is selected (onlclicklistener)
-- (void)handleTap:(UITapGestureRecognizer *)recognizer  {
-    //gets the cell thats was clicked
-    CustomCollectionCell *cell_test = (CustomCollectionCell *)recognizer.view;
-    
-    //gets indexpath of the cell
-    NSIndexPath *indexPath = [collectionViewThumbnails indexPathForCell:cell_test];
-    
-    if (isConnectedGal)
-    {
-        //sets the image that will be displayed in the photo browser
-        [photoGallery setInitialPageIndex:indexPath.row];
-        
-        //pushed photobrowser
-        [self.navigationController pushViewController:photoGallery animated:YES];
-    }
-}
-
 #pragma mark - MWPhotoBrowser -
 /******************************
-*mwphotobrowser delegate stuff*
-******************************/
-- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser {
-    return self.photos.count;
+ *mwphotobrowser delegate stuff*
+ ******************************/
+- (NSUInteger)numberOfPhotosInPhotoBrowser:(MWPhotoBrowser *)photoBrowser
+{
+    return photos.count;
 }
-- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index {
-    if (index < self.photos.count)
-        return [self.photos objectAtIndex:index];
+- (MWPhoto *)photoBrowser:(MWPhotoBrowser *)photoBrowser photoAtIndex:(NSUInteger)index
+{
+    if (index < photos.count)
+    {
+        return [photos objectAtIndex:index];
+    }
     return nil;
 }
 
@@ -194,7 +189,7 @@ BOOL isConnectedGal = NO ;
 - (void)testInternetConnection
 {
     __weak typeof(self) weakSelf = self;
-    
+    int navHeightTemp = navHeight ;
     internetReachableGal = [Reachability reachabilityWithHostname:@"www.google.com"];
     
     // Internet is reachable
@@ -205,14 +200,14 @@ BOOL isConnectedGal = NO ;
             //Removes the warning
             if (! weakSelf.internetAlertGalBackground.hidden)
             {
-                [weakSelf.internetAlertGalBackground slideOutTo:kFTAnimationTop duration:.3 delegate:nil];
+                [[Utils alloc] animationSlideOut:weakSelf.internetAlertGalBackground];
             }
             //Tells the app that there is now an internet conencton
             isConnectedGal = YES;
             
             //Loads the view if it wants laoded already
             
-            [weakSelf.collectionViewThumbnails reloadData];
+            [weakSelf.self.collectionViewThumbnails reloadData];
         });
     };
     
@@ -222,13 +217,9 @@ BOOL isConnectedGal = NO ;
         // Update the UI on the main thread
         dispatch_async(dispatch_get_main_queue(), ^{
             //Pushes the warning view
-            if (![weakSelf.internetAlertGalBackground isDescendantOfView:weakSelf.view])
-            {
-                [weakSelf.view insertSubview:weakSelf.internetAlertGalBackground aboveSubview:weakSelf.collectionViewThumbnails];
-            }
             if (weakSelf.internetAlertGalBackground.hidden)
             {
-                [weakSelf.internetAlertGalBackground slideInFrom:kFTAnimationTop duration:.3 delegate:nil];
+                [[Utils alloc] animationSlideIn:weakSelf.internetAlertGalBackground shouldUseiOS7Offset:isiOS7 navBarHeight:navHeightTemp];
             }
             isConnectedGal = NO;
         });

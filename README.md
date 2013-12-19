@@ -7,11 +7,12 @@ AC-Photography-Application
 ##Libraries
 
  - MWPhotoBrowser - https://github.com/mwaterfall/MWPhotoBrowser 
- - FTUtils - https://github.com/neror/ftutils
  - Reachability - https://github.com/tonymillion/Reachability
  - SDWebImage - https://github.com/rs/SDWebImage
  
 ##Details 
+
+ - Compatible with iOS 6.0 +
 
 ###JSON Data 
 
@@ -28,7 +29,6 @@ AC-Photography-Application
  - The main page contains two main elements: a Featured Images Section and a two sepearate gallery sections. 
        - The Featured Images secition displays 5 images specified in the JSON data. 
        - In my case I have two separate sections for photo galleries so this allows the use to choose which section they want to view.
- - NOTE! The red bar at the bottom of the view is used as a placeholder for ads
 
 ![screenshot](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/8116513_orig.png)
 
@@ -60,3 +60,25 @@ AC-Photography-Application
  - From the photo browser, the user can save, copy, and email the image.
  
 ![screenshot](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/7653410_orig.png)
+
+##License 
+
+Copyright (c) 2013 Andre Compagno 
+ 
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is furnished
+to do so, subject to the following conditions:
+ 
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+ 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

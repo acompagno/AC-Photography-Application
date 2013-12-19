@@ -15,10 +15,14 @@ AppDelegate *secondaryAppDel;
 @interface SelectionViewController : UIViewController<UINavigationBarDelegate,UITableViewDelegate,UITableViewDataSource>
 {
     Reachability *internetReachableSel;
-    UITableView *tableView2;
-    UIView *internetAlertSelBackground;
+    NSArray *tableData2;
+    NSString *tempStrHolderSel;
 }
+
 @property (nonatomic , retain) UITableView *tableView2;
 @property (nonatomic , retain) UIView *internetAlertSelBackground;
+
+- (void)testInternetConnection;
+
 @end
 

@@ -22,7 +22,7 @@ AC-Photography-Application
  - I included a small script that generates JSON data from Flickr sets. Simply run `sh test.sh` then enter the link to the gallery's sets (Ex: `http://www.flickr.com/photos/38177739@N05/sets/`)
       - The script will then create data including an object with the titles of each of the sets and then an object for each set with the urls to the images.
      
-![script](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/4493560_orig.png)
+![script](https://raw.github.com/acompagno/AC-Photography-Application/master/AC%20Photo/Images/ScriptScreenshot.png)
 
 ###Main View
 
@@ -30,36 +30,36 @@ AC-Photography-Application
        - The Featured Images secition displays 5 images specified in the JSON data. 
        - In my case I have two separate sections for photo galleries so this allows the use to choose which section they want to view.
 
-![screenshot](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/8116513_orig.png)
+![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/1.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/1.png)
 
 ###Information View
 
  - The main page also contains an information view where I link to my photography website and Facebook page. 
 
-![screenshot](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/8138601_orig.png)
+![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/2.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/2.png)
 
 ###Gallery Selection View
 
  - After selecting one of the sections, each of the photo galleries avaliable are displayed
       - The cell for each of the galleries has an image and the number of photos in the gallery 
 
-![screenshot](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/6859383_orig.png)
+![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/3.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/3.png)
 
 ###Thumbnail Gallery
 
  - Once a gallery is chosen, the user can now view thumbnails for the images. 
 
-![screenshot](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/6499987_orig.png)
+![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/4.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/4.png)
 
 ###Photo Browser
 
  - When a thumbnail is clicked, it opens up the photo browser. 
 
-![screenshot](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/4720719_orig.png)
+![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/5.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/5.png)
 
  - From the photo browser, the user can save, copy, and email the image.
  
-![screenshot](http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/7653410_orig.png)
+![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/6.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/6.png)
 
 ##License 
 

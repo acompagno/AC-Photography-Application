@@ -22,7 +22,7 @@ AC-Photography-Application
  - I included a small script that generates JSON data from Flickr sets. Simply run `sh test.sh` then enter the link to the gallery's sets (Ex: `http://www.flickr.com/photos/38177739@N05/sets/`)
       - The script will then create data including an object with the titles of each of the sets and then an object for each set with the urls to the images.
      
-![script](https://raw.github.com/acompagno/AC-Photography-Application/master/AC%20Photo/Images/ScriptScreenshot.png)
+![script](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/ScriptScreenshot.png)
 
 ###Main View
 

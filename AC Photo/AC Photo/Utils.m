@@ -13,6 +13,7 @@
 #define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN(v)                 ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] == NSOrderedAscending)
 #define SYSTEM_VERSION_LESS_THAN_OR_EQUAL_TO(v)     ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedDescending)
+#define RGBA(r, g, b, a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 @implementation Utils
 
@@ -88,6 +89,33 @@
                      completion:^(BOOL finished){
                      }];
     return YES;
+}
+
+- (void) animationSlideTableViewIn:(UITableView *)tableView withSliderButton:(UIButton *)sliderButton
+                        withCenter:(CGFloat)centerY withMax:(CGFloat)max slideDown:(BOOL) slideDown
+                          darkView:(UIView *)darkView alpha:(CGFloat)alpha
+{
+    CGPoint tableCenter = tableView.center , buttonCenter = sliderButton.center;
+    tableCenter.y = centerY;
+    buttonCenter.y = max;
+    [UIView animateWithDuration:0.3
+                               delay:0.0
+                             options: UIViewAnimationOptionCurveLinear
+                          animations:^{
+                              sliderButton.center = buttonCenter;
+                              tableView.center = tableCenter;
+                              darkView.backgroundColor = RGBA(0 , 0 , 0 , alpha);
+                          }
+                          completion:^(BOOL finished){
+                              if (slideDown)
+                              {
+                                  tableView.frame = CGRectMake(tableView.frame.origin.x,
+                                                               tableView.frame.origin.y,
+                                                               tableView.frame.size.width,
+                                                               88);
+                                  darkView.hidden = YES;
+                              }
+                          }];
 }
 
 @end

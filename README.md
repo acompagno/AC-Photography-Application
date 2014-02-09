@@ -17,12 +17,51 @@ AC-Photography-Application
 ###JSON Data 
 
  - My data was set up to work with my website and with the way my images are organized. In order to make this app work for you, you'll have to create your own data
+ - JSON data format 
+```
+{
+  "main_page": [ //Include the category names in the "main_page" object
+    "Practices",
+    "Events"
+  ],
+  "Practices": [ //For each category create an object with its name including the names of all the galleries within
+    "PBW 11/06/2011",
+    ....
+  ],
+  "Events": [
+    "NCPA SACC #2 2011",
+    ....
+  ],
+  "Featured": [ //in the featured object include the urls to your chosen featured images
+    "http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/1068479_orig.jpg",
+    ....
+  ],
+  "Events_Images": [ //For each catergory include the urls to its galleries thumbnails
+    "http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/9148830_orig.jpg",
+    ....
+  ],
+  "Practices_Images": [
+    "http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/3545902_orig.jpg",
+    ....
+  "PBW 11/06/2011": [ //For each gallery include an object with the urls for all the images
+    "8962321_orig.jpg",
+    ....
+  ],
+  "Hotshots 01/01/2012": [
+    "9646669_orig.jpg",
+    ....
+  ],
+  "PBW 01/29/2012": [
+    "9283844_orig.jpg",
+    ....
+}
+```
  - You can view my JSON data in the repo or in the link below 
       - http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/acphoto.json
- - I included a small script that generates JSON data from Flickr sets. Simply run `sh test.sh` then enter the link to the gallery's sets (Ex: `http://www.flickr.com/photos/38177739@N05/sets/`)
-      - The script will then create data including an object with the titles of each of the sets and then an object for each set with the urls to the images.
-     
-![script](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/ScriptScreenshot.png)
+ - ~~I included a small script that generates JSON data from Flickr sets. Simply run `sh test.sh` then enter the link to the gallery's sets (Ex: `http://www.flickr.com/photos/38177739@N05/sets/`)~~
+      - ~~The script will then create data including an object with the titles of each of the sets and then an object for each set with the urls to the image~~
+
+ - The script is no longer working. I'll leave it in the repo in case somebody wants to fix it.
 
 ###Main View
 
@@ -31,6 +70,12 @@ AC-Photography-Application
        - In my case I have two separate sections for photo galleries so this allows the use to choose which section they want to view.
 
 ![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/1.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/1.png)
+
+ - If there are more than two categories, the app will automatically create a draggable UITableView.
+![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/7.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/7.png)
+
+![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/8.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/8.png)
+
 
 ###Information View
 

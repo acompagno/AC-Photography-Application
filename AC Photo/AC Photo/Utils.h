@@ -28,4 +28,7 @@
 //Animations for the internet warning views
 - (BOOL) animationSlideIn:(UIView *)internetWarning shouldUseiOS7Offset:(BOOL)is7 navBarHeight:(int)navHeight;
 - (BOOL) animationSlideOut:(UIView *)internetWarning;
+- (void) animationSlideTableViewIn:(UITableView *)tableView withSliderButton:(UIButton *)sliderButton
+                        withCenter:(CGFloat)centerY withMax:(CGFloat)max slideDown:(BOOL)slideDown
+                          darkView:(UIView *)darkView alpha:(CGFloat)alpha;
 @end

@@ -17,6 +17,8 @@
     NSArray *mainTableData;
     UIBarButtonItem *infoButton;
     NSDictionary *titleOptions;
+    CGFloat tableViewStartPoint , maxTableViewScrollPoint;
+    BOOL slideOutMenuDemo;
 }
 
 @property (nonatomic , retain) UIScrollView* scrollViewFeatured;
@@ -25,6 +27,8 @@
 @property (nonatomic , retain) UIView *infoBackground;
 @property (nonatomic , retain) UIView *infoView;
 @property (nonatomic , retain) UIView *internetAlertMainBackground;
+@property (nonatomic , retain) UIView *darkView;
+@property (nonatomic , retain) UIButton *dragTableButton;
 
 - (void)webLaunch:(UIGestureRecognizer *)recognizer;
 - (void)fbLaunch:(UIGestureRecognizer *)recognizer;

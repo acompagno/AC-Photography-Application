@@ -31,6 +31,12 @@ BOOL isConnected = NO ;
 
 - (void)viewDidLoad
 {
+    /****************************************************************************************
+     *Set this value to YES to enable the Slide out menu demo.                              *
+     *This demo enables the caterogires slide out menu by creating dummy tableview cells    *
+     ****************************************************************************************/
+    slideOutMenuDemo = YES;
+    
     [super viewDidLoad];
     
     /**************************
@@ -199,28 +205,117 @@ BOOL isConnected = NO ;
         self.tableViewMain.frame = CGRectMake(0 , self.scrollViewFeatured.frame.size.height , totalWidth , 88);
         self.tableViewMain.dataSource = self;
         self.tableViewMain.delegate = self;
-        self.tableViewMain.backgroundColor = [UIColor clearColor];
+        self.tableViewMain.backgroundColor = [UIColor whiteColor];
         self.tableViewMain.scrollEnabled = NO;
         [self.tableViewMain setSeparatorColor:[UIColor lightGrayColor]];
         isiOS7 ? [self.tableViewMain setSeparatorInset:UIEdgeInsetsZero] : nil;
         [self.tableViewMain reloadData];
     }
     
+    self.darkView = [[UIView alloc] initWithFrame:CGRectMake(0 , 0 , totalWidth , totalHeight)];
+    if (self.darkView)
+    {
+        self.darkView.backgroundColor = RGBA(0 , 0 , 0 , 0);
+        self.darkView.hidden = YES;
+    }
+    
+    self.dragTableButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    if (self.dragTableButton)
+    {
+        self.dragTableButton.frame = CGRectMake((totalWidth - 50) / 2, self.scrollViewFeatured.frame.size.height - 15 , 50, 15);
+        [self.dragTableButton setImage:[UIImage imageNamed:@"drag_up.png"] forState:UIControlStateNormal];
+        [self.dragTableButton addTarget:self action:@selector(imageTouch:withEvent:) forControlEvents:UIControlEventTouchDownRepeat];
+        [self.dragTableButton addTarget:self action:@selector(imageMoved:withEvent:) forControlEvents:UIControlEventTouchDragInside];
+        tableViewStartPoint = self.dragTableButton.center.y;
+        self.dragTableButton.hidden = YES;
+    }
     /***************
      *Add all views*
      ***************/
     if (self.scrollViewFeatured && self.pageControl && self.tableViewMain && self.infoView && self.infoBackground)
     {
         [self.view addSubview:self.scrollViewFeatured ];
-        [self.view addSubview:self.tableViewMain];
         //Page controler gets added above the scrollview not inside it
         [self.view insertSubview:self.pageControl aboveSubview:self.scrollViewFeatured];
         [self.view addSubview:self.infoBackground];
         [self.view addSubview:self.infoView];
         [self.view insertSubview:self.internetAlertMainBackground aboveSubview:self.pageControl];
-        
+        [self.view insertSubview:self.darkView aboveSubview:self.internetAlertMainBackground];
+        [self.view insertSubview:self.tableViewMain aboveSubview:self.darkView];
+        [self.view insertSubview:self.dragTableButton aboveSubview:self.darkView];
     }
 }
+
+
+- (IBAction) imageTouch:(id) sender withEvent:(UIEvent *) event
+{
+    NSLog(@"image touches");
+    UIControl *control = sender;
+    if (control.center.y <= tableViewStartPoint && control.center.y >= (maxTableViewScrollPoint+tableViewStartPoint)/2)
+    {
+        self.tableViewMain.frame = CGRectMake(self.tableViewMain.frame.origin.x, self.tableViewMain.frame.origin.y,
+                                              self.tableViewMain.frame.size.width, totalHeight - maxTableViewScrollPoint - (15/2));
+        [[Utils alloc] animationSlideTableViewIn:self.tableViewMain
+                                withSliderButton:(UIButton *)control
+                                      withCenter:self.tableViewMain.center.y + maxTableViewScrollPoint - control.center.y
+                                         withMax:maxTableViewScrollPoint
+                                       slideDown:NO
+                                        darkView:self.darkView
+                                           alpha:(tableViewStartPoint - maxTableViewScrollPoint) / tableViewStartPoint];
+        
+        self.darkView.backgroundColor = RGBA(0, 0, 0,(tableViewStartPoint - maxTableViewScrollPoint) / tableViewStartPoint);
+        NSLog(@"%f" , (tableViewStartPoint - maxTableViewScrollPoint) / tableViewStartPoint);
+        self.darkView.hidden = NO;
+        [self setTitle:@"Categories"];
+        [self.dragTableButton setImage:[UIImage imageNamed:@"drag_down.png"] forState:UIControlStateNormal];
+        
+    }
+    else if (control.center.y >= maxTableViewScrollPoint && control.center.y < (maxTableViewScrollPoint+tableViewStartPoint)/2)
+    {
+        [[Utils alloc] animationSlideTableViewIn:self.tableViewMain
+                                withSliderButton:(UIButton *)control
+                                      withCenter:self.tableViewMain.center.y + tableViewStartPoint - control.center.y
+                                         withMax:tableViewStartPoint
+                                       slideDown:YES
+                                        darkView:self.darkView
+                                           alpha:0];
+        [self.dragTableButton setImage:[UIImage imageNamed:@"drag_up.png"] forState:UIControlStateNormal];
+        [self setTitle:@"Featured"];
+    }
+}
+
+- (IBAction) imageMoved:(id) sender withEvent:(UIEvent *) event
+{
+    UIControl *control = sender;
+    
+    UITouch *t = [[event allTouches] anyObject];
+    CGPoint pPrev = [t previousLocationInView:control];
+    CGPoint p = [t locationInView:control];
+    
+    CGPoint tableCenter = self.tableViewMain.center;
+    CGPoint center = control.center;
+    if (center.y + p.y - pPrev.y > maxTableViewScrollPoint && center.y + p.y - pPrev.y < tableViewStartPoint)
+    {
+        center.y += p.y - pPrev.y;
+        tableCenter.y += p.y - pPrev.y;
+        control.center = center;
+        self.tableViewMain.center = tableCenter;
+        self.tableViewMain.frame = CGRectMake(self.tableViewMain.frame.origin.x, self.tableViewMain.frame.origin.y,
+                                              self.tableViewMain.frame.size.width, totalHeight - control.center.y - (15/2));
+        self.darkView.backgroundColor = RGBA(0, 0, 0,   (tableViewStartPoint - control.center.y) / (tableViewStartPoint));
+    }
+    
+    self.darkView.hidden = tableViewStartPoint - control.center.y < 30;
+    self.darkView.hidden ? [self setTitle:@"Featured"] : [self setTitle:@"Categories"];
+    
+    if (control.center.y <= tableViewStartPoint && control.center.y >= (maxTableViewScrollPoint+tableViewStartPoint)/2)
+        [self.dragTableButton setImage:[UIImage imageNamed:@"drag_up.png"] forState:UIControlStateNormal];        
+    else if (control.center.y >= maxTableViewScrollPoint && control.center.y < (maxTableViewScrollPoint+tableViewStartPoint)/2)
+        [self.dragTableButton setImage:[UIImage imageNamed:@"drag_down.png"] forState:UIControlStateNormal];
+
+    
+}
+
 
 #pragma mark - Button Methods -
 
@@ -294,8 +389,28 @@ BOOL isConnected = NO ;
     if (mainAppDel.data)
     {
         mainAppDel.jsonData = [NSJSONSerialization JSONObjectWithData:mainAppDel.data options:kNilOptions error:&error];
-        mainTableData = [mainAppDel.jsonData objectForKey:@"main_page"];
+        mainTableData = slideOutMenuDemo ?  @[@"table cell1",
+                                              @"table cell2",
+                                              @"table cell3",
+                                              @"table cell4",
+                                              @"table cell5",
+                                              @"table cell6",
+                                              @"table cell7",
+                                              @"table cell8",
+                                              @"table cell9",
+                                              @"table cell10"]:
+        [mainAppDel.jsonData objectForKey:@"main_page"];
+        
+        self.tableViewMain.scrollEnabled = [mainTableData count] > 2;
+        self.dragTableButton.hidden = [mainTableData count] <= 2 ;
     }
+    
+    maxTableViewScrollPoint = (totalHeight - [mainTableData count] * [self.tableViewMain rowHeight] > totalHeight / 4) ? totalHeight - [mainTableData count] * [self.tableViewMain rowHeight] : totalHeight / 4;
+    //offset
+    maxTableViewScrollPoint -= 15/2;
+    
+    
+    NSLog(@"%f" , maxTableViewScrollPoint);
     
     NSArray *featured;
     
@@ -338,7 +453,8 @@ BOOL isConnected = NO ;
     
     //Initialize cell
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
-    if (cell == nil) {
+    if (cell == nil)
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
     }
     

@@ -61,7 +61,7 @@ BOOL isConnected = NO ;
     !(isiOS7) ?[self.navigationController.navigationBar setBackgroundImage:[[[Utils alloc] init] imageWithColor:RGBA(1,176,129 , 1)] forBarMetrics:UIBarMetricsDefault] : nil;
     
     //Nsdictionary used for switching the title of the view when clocking the info button
-    titleOptions = @{ @"Featured" : @"Info" , @"Info" : @"Featured"} ;
+    titleOptions = @{@"Featured" : @"Info" , @"Info" : @"Featured"} ;
     //Create info button in navigation bar
     UIButton *button = [UIButton buttonWithType:UIButtonTypeInfoLight];
     [button addTarget:self action:@selector(infoButtonPressed) forControlEvents:UIControlEventTouchUpInside];
@@ -111,7 +111,7 @@ BOOL isConnected = NO ;
     [self.infoBackground addGestureRecognizer:dismissInfoGesture];
     
     //Set up the Facebook button and text
-    UIImageView *fbButtonImg = [[UIImageView alloc]initWithFrame:CGRectMake(10 , 15 , 50 , 50 )];
+    UIImageView *fbButtonImg = [[UIImageView alloc]initWithFrame:CGRectMake(10 , 15 , 50 , 50)];
     [fbButtonImg setImage:[UIImage imageNamed:@"FBLogo.png"]];
     [fbButtonImg setUserInteractionEnabled:YES];
     UITapGestureRecognizer *fbButton =  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(fbLaunch:)];
@@ -163,7 +163,7 @@ BOOL isConnected = NO ;
     }
     
     //Initalize app delegate. used for global variables
-    mainAppDel=[[UIApplication sharedApplication]delegate];
+    mainAppDel = [[UIApplication sharedApplication]delegate];
     
     /***********************************
      *Set up featured images scrollView*
@@ -247,9 +247,10 @@ BOOL isConnected = NO ;
 {
     if (isConnected)
     {
-        NSURL *url = [NSURL URLWithString:@"fb://profile/<239468832773903>"];
+        NSURL *url = [NSURL URLWithString:@"fb://profile/239468832773903"];
         
-        if ([[UIApplication sharedApplication] canOpenURL:url]) {
+        if ([[UIApplication sharedApplication] canOpenURL:url])
+        {
             [[UIApplication sharedApplication] openURL:url];
         }
         else

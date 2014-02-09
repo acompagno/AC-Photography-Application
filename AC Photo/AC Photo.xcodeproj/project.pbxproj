@@ -28,7 +28,7 @@
 		305A0FB217B8C59900F5CC8D /* FBLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 305A0FB117B8C59900F5CC8D /* FBLogo.png */; };
 		305A0FB417B8DD3E00F5CC8D /* WebsiteButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 305A0FB317B8DD3E00F5CC8D /* WebsiteButton.png */; };
 		305A0FB717B9089400F5CC8D /* SelectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305A0FB617B9089400F5CC8D /* SelectionViewController.m */; };
-		308A7916186203E600B939FB /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A7915186203E600B939FB /* Reachability.m */; };
+		3070C34F18A731E7007FE493 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070C34E18A731E7007FE493 /* Reachability.m */; };
 		308A79AB1862043300B939FB /* MWCaptionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A79501862043300B939FB /* MWCaptionView.m */; };
 		308A79AC1862043300B939FB /* MWGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A79531862043300B939FB /* MWGridCell.m */; };
 		308A79AD1862043300B939FB /* MWGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 308A79551862043300B939FB /* MWGridViewController.m */; };
@@ -110,8 +110,8 @@
 		305A0FB317B8DD3E00F5CC8D /* WebsiteButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WebsiteButton.png; sourceTree = "<group>"; };
 		305A0FB517B9089400F5CC8D /* SelectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectionViewController.h; sourceTree = "<group>"; };
 		305A0FB617B9089400F5CC8D /* SelectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectionViewController.m; sourceTree = "<group>"; };
-		308A7914186203E600B939FB /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../Libraries/Reachability/Reachability.h; sourceTree = "<group>"; };
-		308A7915186203E600B939FB /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../Libraries/Reachability/Reachability.m; sourceTree = "<group>"; };
+		3070C34D18A731E7007FE493 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = ../../../Reachability/Reachability.h; sourceTree = "<group>"; };
+		3070C34E18A731E7007FE493 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = ../../../Reachability/Reachability.m; sourceTree = "<group>"; };
 		308A794F1862043300B939FB /* MWCaptionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCaptionView.h; sourceTree = "<group>"; };
 		308A79501862043300B939FB /* MWCaptionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MWCaptionView.m; sourceTree = "<group>"; };
 		308A79511862043300B939FB /* MWCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MWCommon.h; sourceTree = "<group>"; };
@@ -306,8 +306,8 @@
 		30458BF317B3E448005CDBAA /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				308A7914186203E600B939FB /* Reachability.h */,
-				308A7915186203E600B939FB /* Reachability.m */,
+				3070C34D18A731E7007FE493 /* Reachability.h */,
+				3070C34E18A731E7007FE493 /* Reachability.m */,
 			);
 			name = Reachability;
 			sourceTree = "<group>";
@@ -637,6 +637,7 @@
 				308A79AD1862043300B939FB /* MWGridViewController.m in Sources */,
 				308A79B21862043300B939FB /* MWZoomingScrollView.m in Sources */,
 				308A79B91862043300B939FB /* PSTCollectionViewController.m in Sources */,
+				3070C34F18A731E7007FE493 /* Reachability.m in Sources */,
 				308A79B61862043300B939FB /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				308A79C91862043300B939FB /* SDWebImageDownloader.m in Sources */,
 				308A79AB1862043300B939FB /* MWCaptionView.m in Sources */,
@@ -646,7 +647,6 @@
 				308A79CC1862043300B939FB /* SDWebImagePrefetcher.m in Sources */,
 				308A79CF1862043300B939FB /* UIImage+MultiFormat.m in Sources */,
 				308A79D11862043300B939FB /* UIImageView+WebCache.m in Sources */,
-				308A7916186203E600B939FB /* Reachability.m in Sources */,
 				305A0FB717B9089400F5CC8D /* SelectionViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

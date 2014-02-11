@@ -249,7 +249,6 @@ BOOL isConnected = NO ;
 
 - (IBAction) imageTouch:(id) sender withEvent:(UIEvent *) event
 {
-    NSLog(@"image touches");
     UIControl *control = sender;
     if (control.center.y <= tableViewStartPoint && control.center.y >= (maxTableViewScrollPoint+tableViewStartPoint)/2)
     {
@@ -264,7 +263,6 @@ BOOL isConnected = NO ;
                                            alpha:(tableViewStartPoint - maxTableViewScrollPoint) / tableViewStartPoint];
         
         self.darkView.backgroundColor = RGBA(0, 0, 0,(tableViewStartPoint - maxTableViewScrollPoint) / tableViewStartPoint);
-        NSLog(@"%f" , (tableViewStartPoint - maxTableViewScrollPoint) / tableViewStartPoint);
         self.darkView.hidden = NO;
         [self setTitle:@"Categories"];
         [self.dragTableButton setImage:[UIImage imageNamed:@"drag_down.png"] forState:UIControlStateNormal];
@@ -309,7 +307,7 @@ BOOL isConnected = NO ;
     self.darkView.hidden ? [self setTitle:@"Featured"] : [self setTitle:@"Categories"];
     
     if (control.center.y <= tableViewStartPoint && control.center.y >= (maxTableViewScrollPoint+tableViewStartPoint)/2)
-        [self.dragTableButton setImage:[UIImage imageNamed:@"drag_up.png"] forState:UIControlStateNormal];        
+        [self.dragTableButton setImage:[UIImage imageNamed:@"drag_up.png"] forState:UIControlStateNormal];
     else if (control.center.y >= maxTableViewScrollPoint && control.center.y < (maxTableViewScrollPoint+tableViewStartPoint)/2)
         [self.dragTableButton setImage:[UIImage imageNamed:@"drag_down.png"] forState:UIControlStateNormal];
 
@@ -408,9 +406,6 @@ BOOL isConnected = NO ;
     maxTableViewScrollPoint = (totalHeight - [mainTableData count] * [self.tableViewMain rowHeight] > totalHeight / 4) ? totalHeight - [mainTableData count] * [self.tableViewMain rowHeight] : totalHeight / 4;
     //offset
     maxTableViewScrollPoint -= 15/2;
-    
-    
-    NSLog(@"%f" , maxTableViewScrollPoint);
     
     NSArray *featured;
     

@@ -58,10 +58,9 @@ AC-Photography-Application
 ```
  - You can view my JSON data in the repo or in the link below 
       - http://andrecphoto.weebly.com/uploads/6/5/5/1/6551078/acphoto.json
- - ~~I included a small script that generates JSON data from Flickr sets. Simply run `sh test.sh` then enter the link to the gallery's sets (Ex: `http://www.flickr.com/photos/38177739@N05/sets/`)~~
-      - ~~The script will then create data including an object with the titles of each of the sets and then an object for each set with the urls to the image~~
-
- - The script is no longer working. I'll leave it in the repo in case somebody wants to fix it.
+ - I included a small script that generates JSON data from Flickr sets. Simply run `sh test.sh` then enter the link to the gallery's sets (Ex: `http://www.flickr.com/photos/38177739@N05/sets/`)
+      - The script will then create data including an object with the titles of each of the sets and then an object for each set with the urls to the images
+      - This can easily be adapted to the above format
 
 ###Main View
 

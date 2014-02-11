@@ -1,7 +1,7 @@
 json_file = open ('data.json' , 'w')
 
 #writing set titles 
-json_file.write('{"setTitles":[')
+json_file.write('{"main_page":[')
 titles = []
 with open ('settitles.temp' , 'r') as f:
     for line in f: 
@@ -15,7 +15,7 @@ json_file.write('],')
 
 for i in range (0 , len(titles)):
 	photo_urls_temp = []
-	json_file.write(titles[i][:-1]+'_photos":[')
+	json_file.write(titles[i][:-1]+'":[')
 	with open ('photourls ' +str(i+1)+'.temp' , 'r') as f:
 	    for line in f: 
 	    	photo_urls_temp.append(line.rstrip('\n'))

@@ -71,6 +71,7 @@ AC-Photography-Application
 ![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/1.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/1.png)
 
  - If there are more than two categories, the app will automatically create a draggable UITableView.
+
 ![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/7.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/7.png)
 
 ![iOS7screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS7Screenshots/8.png) ![iOS6screenshot](https://raw.github.com/acompagno/AC-Photography-Application/master/Images/iOS6Screenshots/8.png)
